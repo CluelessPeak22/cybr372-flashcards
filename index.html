@@ -1,113 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>CYBR372 Flashcards — ≥20 per Lecture (PDF-sourced)</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root{
-      --bg:#0b0f14; --panel:#0f1620; --card:#121c28; --muted:#7f8da4;
-      --text:#e9eef5; --accent:#5eead4; --accent2:#93c5fd; --danger:#fca5a5;
-      --ok:#86efac; --chip:#1b2838; --border:#203041;
-      --shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text); background:linear-gradient(180deg,#0b0f14,#0a121b 80%, #0b0f14);
-    }
-    header{
-      position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.3) blur(8px);
-      background:rgba(11,15,20,.7); border-bottom:1px solid var(--border);
-    }
-    .wrap{max-width:1100px; margin:0 auto; padding:18px 16px;}
-    h1{margin:0; font-size:20px; font-weight:700; letter-spacing:.3px}
-    .sub{color:var(--muted); font-size:12.5px}
-
-    .toolbar{
-      display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; margin-top:10px;
-    }
-    .controls{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-      background:var(--panel); padding:10px; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
-    }
-    .controls label{display:flex; gap:8px; align-items:center; background:var(--chip); padding:8px 10px; border-radius:8px; border:1px solid var(--border)}
-    .controls input[type="text"], .controls select{
-      background:#0b131c; border:1px solid var(--border); color:#fff;
-      padding:8px 10px; border-radius:8px; min-width:200px; outline:none;
-    }
-    .controls .btn{
-      background:linear-gradient(180deg,#1b2735,#17202b); border:1px solid var(--border);
-      color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer; transition:.2s transform, .2s background;
-    }
-    .controls .btn:hover{transform:translateY(-1px); background:#1d2a39}
-    .controls .btn.accent{border-color:#214c4f; background:linear-gradient(180deg,#0e3b3f,#0a2f33); color:#d9fffb}
-    .controls .toggle{
-      appearance:none; width:38px; height:22px; background:#233345; border-radius:999px; position:relative; outline:none; cursor:pointer; border:1px solid var(--border);
-    }
-    .controls .toggle:checked{background:#1f6159;border-color:#2a8d84}
-    .controls .toggle:before{
-      content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; background:#cfd7e3; border-radius:50%; transition:.2s left;
-    }
-    .controls .toggle:checked:before{left:18px}
-
-    .grid{
-      display:grid; grid-template-columns:1fr 360px; gap:16px; margin-top:16px;
-    }
-    @media (max-width:980px){ .grid{grid-template-columns:1fr} }
-    .card{
-      background:radial-gradient(1200px 600px at 100% 0%, rgba(94,234,212,.06), transparent 60%), var(--card);
-      border:1px solid var(--border); border-radius:16px; min-height:280px; padding:22px; box-shadow:var(--shadow);
-      display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; cursor:pointer; user-select:none;
-      position:relative; isolation:isolate;
-    }
-    .card .tag{
-      position:absolute; top:12px; left:12px; background:#10202b; color:#a6eddd; border:1px solid #204f49; padding:5px 8px; border-radius:999px; font-size:12px;
-    }
-    .card .q{font-size:20px; font-weight:700; line-height:1.35; letter-spacing:.2px}
-    .card .a{margin-top:10px; font-size:16px; color:#d5deeb; display:none}
-    .card.revealed .a{display:block}
-    .card.revealed .q{opacity:.9}
-    .meta{
-      display:flex; justify-content:space-between; gap:8px; margin-top:12px; color:var(--muted); font-size:12.5px;
-    }
-    .side{
-      background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px; box-shadow:var(--shadow);
-      display:flex; flex-direction:column; gap:12px; height:100%;
-    }
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{background:var(--chip); border:1px solid var(--border); color:#cfe8ff; padding:6px 8px; border-radius:999px; font-size:12px; cursor:pointer}
-    .chip.active{outline:2px solid var(--accent2); color:#fff}
-    .stat{display:flex; gap:8px; align-items:center; font-size:13px; color:var(--muted)}
-    progress{width:100%; height:10px; accent-color:var(--accent2); background:#0b131c; border-radius:999px}
-    .muted{color:var(--muted)}
-    .kbd{font:12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:#091017; border:1px solid var(--border); border-bottom-color:#000; color:#cfe8ff; padding:2px 6px; border-radius:6px}
-    footer{margin:20px 0 40px; color:var(--muted); text-align:center}
-    .tiny{font-size:11px}
-    textarea{width:100%; min-height:120px; background:#0b131c; color:#fff; border:1px solid var(--border); border-radius:8px; padding:8px}
-    .danger{color:var(--danger)}
-    .ok{color:var(--ok)}
-  </style>
+<meta charset="utf-8">
+<title>CYBR372 Flashcards — 20+ per Lecture (No Blanks)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#0f1620; --card:#121c28; --muted:#8aa0c6;
+    --text:#e9eef5; --accent:#5eead4; --accent2:#93c5fd; --border:#203041;
+    --ok:#86efac;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0; font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--text);
+       background:linear-gradient(180deg,#0b0f14,#0a121b 80%, #0b0f14);}
+  header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(1.15) blur(8px);
+         background:rgba(11,15,20,.7); border-bottom:1px solid var(--border);}
+  .wrap{max-width:1100px; margin:0 auto; padding:16px}
+  h1{margin:0 0 6px; font-size:20px; font-weight:700; letter-spacing:.2px}
+  .sub{color:var(--muted); font-size:12.5px}
+  .toolbar{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; margin-top:10px}
+  .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; background:var(--panel);
+            padding:10px; border:1px solid var(--border); border-radius:12px;}
+  .controls label{display:flex; gap:8px; align-items:center; background:#132032; border:1px solid var(--border);
+                  padding:8px 10px; border-radius:8px}
+  .controls input[type="text"], .controls select{
+    background:#0b131c; border:1px solid var(--border); color:#fff; padding:8px 10px; border-radius:8px; min-width:220px; outline:none;
+  }
+  .btn{background:linear-gradient(180deg,#1b2735,#17202b); border:1px solid var(--border); color:#fff; padding:8px 12px; border-radius:8px; cursor:pointer}
+  .btn:hover{transform:translateY(-1px)}
+  .toggle{appearance:none; width:38px; height:22px; background:#233345; border-radius:999px; position:relative; outline:none; cursor:pointer; border:1px solid var(--border)}
+  .toggle:before{content:""; position:absolute; top:2px; left:2px; width:18px; height:18px; background:#cfd7e3; border-radius:50%; transition:.2s left}
+  .toggle:checked{background:#1f6159}
+  .toggle:checked:before{left:18px}
+  .grid{display:grid; grid-template-columns:1fr 360px; gap:16px; margin-top:16px}
+  @media (max-width:980px){ .grid{grid-template-columns:1fr} }
+  .card{background:radial-gradient(1200px 600px at 100% 0%, rgba(94,234,212,.06), transparent 60%), var(--card);
+        border:1px solid var(--border); border-radius:16px; min-height:300px; padding:22px; display:flex; flex-direction:column;
+        justify-content:center; align-items:center; text-align:center; cursor:pointer; user-select:none; position:relative}
+  .tag{position:absolute; top:12px; left:12px; background:#10202b; color:#a6eddd; border:1px solid #204f49; padding:5px 8px; border-radius:999px; font-size:12px}
+  .q{font-size:20px; font-weight:800; line-height:1.35}
+  .a{margin-top:12px; font-size:16px; color:#d5deeb; display:none}
+  .card.revealed .a{display:block}
+  .meta{display:flex; justify-content:space-between; gap:10px; margin-top:12px; color:var(--muted); font-size:12.5px}
+  .side{background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:12px}
+  .chips{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{background:#132032; border:1px solid var(--border); color:#cfe8ff; padding:6px 8px; border-radius:999px; font-size:12px; cursor:pointer}
+  .chip.active{outline:2px solid var(--accent2); color:#fff}
+  progress{width:100%; height:10px; accent-color:var(--accent2); background:#0b131c; border-radius:999px}
+  .muted{color:var(--muted)} .kbd{font:12px/1.2 ui-monospace,Menlo,Consolas,monospace; background:#091017; border:1px solid var(--border); color:#cfe8ff; padding:2px 6px; border-radius:6px}
+  footer{margin:24px 0 40px; color:var(--muted); text-align:center; font-size:12px}
+</style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <h1>CYBR372 Flashcards — Applied Cryptography</h1>
-    <div class="sub">≥20 cards guaranteed per lecture. Click the card (or press <span class="kbd">Space</span>/<span class="kbd">Enter</span>) to reveal.</div>
+    <h1>CYBR372 Flashcards — 20+ per Lecture (No “fill the blank”)</h1>
+    <div class="sub">All prompts are question→answer. Click card or press <span class="kbd">Space</span>/<span class="kbd">Enter</span> to reveal. Use <span class="kbd">←</span>/<span class="kbd">→</span> to navigate.</div>
     <div class="toolbar">
       <div class="controls">
-        <label title="Shuffle deck when loading / changing filters"><input id="shuffleToggle" type="checkbox" class="toggle" checked> <span>Shuffle on load</span></label>
-        <button id="shuffleBtn" class="btn accent">Shuffle now</button>
-        <label>Search <input id="searchBox" type="text" placeholder="e.g. DOA vs EA, ECDHE, STARTTLS, RRSIG"></label>
-        <label>Topic
-          <select id="topicFilter">
-            <option value="">All lectures</option>
-          </select>
+        <label><input id="shuffleToggle" type="checkbox" class="toggle" checked> Shuffle on load</label>
+        <button id="shuffleBtn" class="btn">Shuffle now</button>
+        <label>Search <input id="searchBox" type="text" placeholder="Search… e.g. AEAD, ECDHE, P2PKH, DMARC, DNSSEC"></label>
+        <label>Lecture
+          <select id="topicFilter"><option value="">All lectures</option></select>
         </label>
         <button id="resetBtn" class="btn">Reset progress</button>
-        <button id="exportBtn" class="btn">Export JSON</button>
-        <button id="importBtn" class="btn">Import JSON</button>
       </div>
     </div>
   </div>
@@ -116,7 +74,7 @@
 <main class="wrap">
   <div class="grid">
     <section>
-      <div id="card" class="card" tabindex="0" aria-live="polite" aria-label="Flashcard">
+      <div id="card" class="card" tabindex="0" aria-live="polite">
         <div class="tag" id="tag">Topic</div>
         <div class="q" id="q">Loading…</div>
         <div class="a" id="a"></div>
@@ -127,531 +85,398 @@
       </div>
       <div class="meta" style="margin-top:10px">
         <div>Keys: <span class="kbd">←</span>/<span class="kbd">→</span> prev/next, <span class="kbd">Space</span> reveal, <span class="kbd">S</span> mark known</div>
-        <div id="knownStat" class="stat"></div>
+        <div id="knownStat" class="muted"></div>
       </div>
     </section>
-
     <aside class="side">
       <div>
         <strong>Lectures</strong>
         <div id="chips" class="chips"></div>
       </div>
-
       <div>
         <strong>Deck status</strong>
-        <div class="stat"><span id="deckSize">0</span> cards in deck</div>
+        <div class="muted"><span id="deckSize">0</span> cards loaded</div>
         <progress id="prog" value="0" max="100"></progress>
-        <div class="tiny muted" id="topicProgress"></div>
       </div>
-
-      <div>
-        <strong>Import / Export</strong>
-        <div class="muted tiny" style="margin-bottom:6px">Export your current deck or import a JSON exported earlier.</div>
-        <textarea id="jsonArea" placeholder='Paste deck JSON here to import (or use the Export button)…'></textarea>
-        <div style="display:flex; gap:8px; margin-top:6px">
-          <button id="applyImport" class="btn">Apply Import</button>
-          <span id="importStatus" class="muted tiny"></span>
-        </div>
-      </div>
-
-      <div class="muted tiny">
-        Cards are sourced from your PDF notes; each lecture is padded to ≥20 with short recall / cloze / T/F variants derived from the same facts. ✔️
-      </div>
+      <div class="muted">Cards are based on your PDF slides + Lecture 21 notes. ✔️</div>
     </aside>
   </div>
 </main>
 
-<footer class="wrap tiny">
-  © CYBR372 study deck.
-</footer>
+<footer class="wrap">© CYBR372 study deck</footer>
 
 <script>
-/* ------------------------------ Utilities ------------------------------ */
-function mulberry32(seed){ return function(){ let t = seed += 0x6D2B79F5; t = Math.imul(t ^ (t>>>15), t | 1); t ^= t + Math.imul(t ^ (t>>>7), t | 61); return ((t ^ (t>>>14)) >>> 0) / 4294967296; } }
-function shuffleInPlace(arr, rng=Math.random){ for(let i=arr.length-1;i>0;--i){ const j = Math.floor(rng()* (i+1)); [arr[i],arr[j]]=[arr[j],arr[i]] } return arr }
-function escapeHTML(s){ return (s||"").replace(/[&<>]/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[ch])) }
-function uid(){ return Math.random().toString(36).slice(2) }
+/* ===================== HARD-CODED CARDS — NO FILL-IN-BLANKS ===================== */
+/* Each entry is an original Q→A derived from the lecture material.               */
 
-/* -------------------------- Seed facts per lecture --------------------------
-   Each item: {topic, q, a, ref}. Topics match your PDF lecture titles.
-   Existing seeds are preserved; below I’ve appended many new seeds explicitly
-   covering your requested areas (Hash functions, TLS, Email, Modes, PKI, etc.).
------------------------------------------------------------------------------ */
+const CARDS = [
+/* 1) CRYPTOGRAPHIC HASH FUNCTIONS (22) */
+{topic:"Cryptographic Hash Functions", q:"What properties make a hash function cryptographic rather than just a checksum?", a:"Preimage, second-preimage, and collision resistance—not just error detection."},
+{topic:"Cryptographic Hash Functions", q:"Why does the birthday paradox matter for hash collisions?", a:"It implies collisions appear after ~2^(L/2) trials for L-bit digests."},
+{topic:"Cryptographic Hash Functions", q:"Why do systems hash before signing?", a:"To handle arbitrary-length inputs and rely on standard security proofs."},
+{topic:"Cryptographic Hash Functions", q:"Give one scenario that needs preimage resistance.", a:"Protecting password hashes from inversion by attackers."},
+{topic:"Cryptographic Hash Functions", q:"Give one scenario that needs second-preimage resistance.", a:"Ensuring a file download cannot be replaced with another file with the same hash."},
+{topic:"Cryptographic Hash Functions", q:"Give one scenario that needs collision resistance.", a:"Preventing signed document substitution attacks."},
+{topic:"Cryptographic Hash Functions", q:"Explain the avalanche effect.", a:"A tiny input change unpredictably flips about half the output bits."},
+{topic:"Cryptographic Hash Functions", q:"Why are unsalted password hashes weak?", a:"They allow precomputed tables and cross-user hash reuse."},
+{topic:"Cryptographic Hash Functions", q:"What does salting achieve?", a:"Unique per-user randomness defeats rainbow tables and slows offline guessing."},
+{topic:"Cryptographic Hash Functions", q:"When should you use Argon2 or PBKDF2?", a:"When storing passwords to add work and memory cost to guesses."},
+{topic:"Cryptographic Hash Functions", q:"What is a pepper and where is it stored?", a:"A server-side secret mixed with hashes; stored separately from the DB."},
+{topic:"Cryptographic Hash Functions", q:"Why is HMAC preferred over DIY 'hash(key||message)'?", a:"It avoids length-extension and provides proven MAC security."},
+{topic:"Cryptographic Hash Functions", q:"How does a commitment using a hash work?", a:"Publish H(m||r) now, reveal m and r later; binding if collisions are hard."},
+{topic:"Cryptographic Hash Functions", q:"Why is SHA-1 deprecated today?", a:"Practical chosen-prefix collisions undermined collision resistance."},
+{topic:"Cryptographic Hash Functions", q:"What construction underlies SHA-3?", a:"Keccak sponge permutation; different from Merkle–Damgård."},
+{topic:"Cryptographic Hash Functions", q:"How long is a SHA-256 digest?", a:"256 bits (32 bytes)."},
+{topic:"Cryptographic Hash Functions", q:"What’s the practical impact of collision resistance being ~2^(L/2)?", a:"It dictates digest length choices: e.g., 256-bit digest for ~128-bit collision security."},
+{topic:"Cryptographic Hash Functions", q:"Why verify hashes over software packages?", a:"To detect tampering during distribution or storage."},
+{topic:"Cryptographic Hash Functions", q:"How can hashing support non-repudiation?", a:"Hash-then-sign binds the exact content to a signer’s private key."},
+{topic:"Cryptographic Hash Functions", q:"Why is a simple CRC insufficient against an attacker?", a:"CRCs are linear and easy to manipulate; cryptographic hashes resist adversaries."},
+{topic:"Cryptographic Hash Functions", q:"Where do you include nonces when authenticating data?", a:"In the input or AAD so replayed messages fail verification."},
+{topic:"Cryptographic Hash Functions", q:"What’s the risk of reusing salts across users?", a:"Shared salts enable cross-user correlation and more efficient attacks."},
 
-const SEEDS = [
-  /* Lecture 1 — Basic Security Services */
-  {topic:"Basic Security Services", q:"Define Confidentiality.", a:"Assurance that data cannot be viewed by an unauthorised user.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Define Data Integrity.", a:"Assurance that data has not been altered in an unauthorised manner; it detects alteration rather than preventing it.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Define Data Origin Authentication (DOA).", a:"Assurance that a given entity was the original source of the data (message authentication).", ref:"L1"},
-  {topic:"Basic Security Services", q:"Define Entity Authentication (EA).", a:"Assurance that a given entity is involved and currently active in a communication session.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Define Non-repudiation.", a:"Assurance that an entity cannot deny a previous commitment or action to a third party.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Why does confidentiality not imply DOA?", a:"Ciphertext can be modified to decrypt to another plausible plaintext; decryption success ≠ origin proof.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Relationship: DOA vs Data Integrity.", a:"DOA implies Data Integrity; if you can’t verify integrity you can’t bind the origin.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Relationship: Non-repudiation vs DOA.", a:"Non-repudiation implies DOA (and thus integrity).", ref:"L1"},
-  {topic:"Basic Security Services", q:"Explain DOA vs EA.", a:"DOA authenticates who created the data; EA authenticates who is currently at the other end now.", ref:"L1"},
-  {topic:"Basic Security Services", q:"Give an example where EA is required but DOA alone is not enough.", a:"ATM cash withdrawal: need to know the live party is the account holder (EA).", ref:"L1"},
-  {topic:"Basic Security Services", q:"State two passive threats and two active threats.", a:"Passive: eavesdropping, traffic analysis. Active: modification, deletion, injection, replay.", ref:"L1"},
-  {topic:"Basic Security Services", q:"List non-technical facets a secure system also depends on.", a:"Physical security, processes, human factors, configuration, policies.", ref:"L1"},
+/* 2) TLS (22) */
+{topic:"TLS", q:"What security goals does the TLS handshake accomplish before application data flows?", a:"Server authentication, parameter negotiation, and key establishment."},
+{topic:"TLS", q:"Why did TLS 1.3 remove static RSA key transport?", a:"To enforce forward secrecy via (EC)DHE and drop legacy risks."},
+{topic:"TLS", q:"What does 'forward secrecy' protect you from?", a:"Future exposure of long-term keys cannot decrypt past traffic."},
+{topic:"TLS", q:"Why are AEAD ciphers preferred in modern TLS?", a:"They give confidentiality and integrity in one construction (e.g., AES-GCM)."},
+{topic:"TLS", q:"What is sent in ServerHello that impacts key schedule?", a:"Server random, cipher choice, and (in 1.3) key share for (EC)DHE."},
+{topic:"TLS", q:"How is a server’s identity verified?", a:"By validating its X.509 certificate chain to a trusted root and checking the hostname."},
+{topic:"TLS", q:"What is ALPN and why does it matter?", a:"Application-Layer Protocol Negotiation; selects HTTP/2 vs HTTP/3 during TLS."},
+{topic:"TLS", q:"What problem did 'downgrade protection' address?", a:"Active attackers forcing a connection to old, weaker protocol versions."},
+{topic:"TLS", q:"When is 0-RTT acceptable and what’s the caveat?", a:"For idempotent requests; it can be replayed by attackers."},
+{topic:"TLS", q:"What is stapled OCSP and why use it?", a:"Server sends signed status to avoid client OCSP lookups and privacy leaks."},
+{topic:"TLS", q:"What does HKDF contribute in TLS 1.3?", a:"It expands and derives traffic secrets from shared (EC)DHE keys."},
+{topic:"TLS", q:"Why is CBC avoided now in TLS?", a:"Padding-oracle attacks; AEAD ciphers supersede it."},
+{topic:"TLS", q:"What role does SNI play on shared IPs?", a:"Identifies the intended hostname so the server can present the right certificate."},
+{topic:"TLS", q:"How does mutual TLS differ from typical TLS?", a:"The client also presents a certificate, enabling strong client authentication."},
+{topic:"TLS", q:"Why is TLS not equal to HTTPS?", a:"HTTPS is HTTP over TLS plus browser policies (e.g., HSTS); TLS is the cryptographic transport."},
+{topic:"TLS", q:"What makes ECDHE generally preferable to finite-field DHE?", a:"Smaller parameters and better performance for equivalent security."},
+{topic:"TLS", q:"How does session resumption work in 1.3?", a:"PSK tickets from a previous session re-establish keys quickly and may enable 0-RTT."},
+{topic:"TLS", q:"What is the purpose of certificate pinning (at a high level)?", a:"Restrict which keys/certs a client will accept for a domain."},
+{topic:"TLS", q:"What breaks the guarantees of PFS in practice?", a:"Using static key exchange or reusing ephemeral keys across sessions."},
+{topic:"TLS", q:"How is TLS related to QUIC?", a:"QUIC embeds TLS 1.3 for key establishment within its transport over UDP."},
+{topic:"TLS", q:"Why verify key usage/EKU on certificates?", a:"To ensure the cert is authorized for server auth, not just any purpose."},
 
-  /* Lecture 2 — Introduction to Confidentiality */
-  {topic:"Introduction to Confidentiality", q:"Plaintext vs ciphertext.", a:"Plaintext: original data. Ciphertext: encrypted data produced by encryption algorithm and key.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Kerckhoffs’s principle.", a:"Security should reside solely in the key; algorithms can be public.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"List attack models (in increasing power).", a:"Ciphertext-only, known-plaintext, chosen-plaintext, chosen-ciphertext.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Define keyspace.", a:"The set of all possible decryption keys.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Symmetric vs public-key cryptosystem.", a:"Symmetric uses essentially the same key; public-key uses different encryption/decryption keys.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Encryption vs steganography.", a:"Encryption hides meaning; steganography hides existence of the message.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"What does exhaustive key search benchmark?", a:"Baseline feasibility against which smarter attacks are compared.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Why prefer public algorithms over proprietary crypto?", a:"Scrutiny, interoperability, transparency.", ref:"L2"},
-  {topic:"Introduction to Confidentiality", q:"Name three side-channel attacks.", a:"Timing, power analysis, fault injection; also padding oracles.", ref:"L2"},
+/* 3) EMAIL SECURITY (TRANSPORT + SENDER AUTH) (22) */
+{topic:"Email Security", q:"What is the key difference between implicit TLS and STARTTLS for email protocols?", a:"Implicit TLS starts encrypted on dedicated ports; STARTTLS upgrades a plaintext session."},
+{topic:"Email Security", q:"Why does STARTTLS allow downgrade attacks if not enforced?", a:"An attacker can strip the STARTTLS offer and keep SMTP in plaintext."},
+{topic:"Email Security", q:"What does MTA-STS accomplish for SMTP delivery?", a:"It declares a domain’s policy requiring TLS and valid certs for inbound mail."},
+{topic:"Email Security", q:"How does DANE improve SMTP TLS security?", a:"DNSSEC-signed TLSA records bind certs/keys to domains for MTAs."},
+{topic:"Email Security", q:"Why is hop-by-hop TLS not end-to-end encryption?", a:"Mail servers terminate TLS and can read stored messages."},
+{topic:"Email Security", q:"What problem does SPF address?", a:"It authorizes which IPs may send mail for a domain’s envelope sender."},
+{topic:"Email Security", q:"What problem does DKIM address?", a:"It provides cryptographic integrity and domain-level authentication via a header signature."},
+{topic:"Email Security", q:"How does DMARC build on SPF and DKIM?", a:"It checks alignment of header From: with authenticated domain and sets policy (none/quarantine/reject)."},
+{topic:"Email Security", q:"Why is DNSSEC relevant to SPF/DKIM/DMARC?", a:"Their public records are in DNS TXT; DNSSEC prevents forged answers."},
+{topic:"Email Security", q:"What’s the envelope sender versus the header From:?", a:"Envelope sender is used for routing/bounces; header From: is shown to users."},
+{topic:"Email Security", q:"How do aggregate and forensic DMARC reports differ?", a:"Aggregate are XML summaries; forensic may include copies of failed messages."},
+{topic:"Email Security", q:"What basic requirement did large providers start enforcing in 2024 for bulk senders?", a:"Publish SPF or sign DKIM and enforce DMARC policies to reduce abuse."},
+{topic:"Email Security", q:"Why can DKIM survive forwarding better than SPF?", a:"SPF depends on the sending IP; DKIM’s signature can remain valid through relays if headers/body are preserved."},
+{topic:"Email Security", q:"What does STARTTLS 'opportunistic TLS' imply?", a:"Try TLS if available; otherwise deliver in clear unless policy forbids."},
+{topic:"Email Security", q:"Why is strict alignment in DMARC stronger than relaxed?", a:"It requires exact domain matches rather than parent-domain matches."},
+{topic:"Email Security", q:"What’s a Return-Path header used for?", a:"It carries the bounce address (MAIL FROM) after delivery."},
+{topic:"Email Security", q:"What record type does DANE rely on?", a:"TLSA records signed by DNSSEC."},
+{topic:"Email Security", q:"Name two reasons SPF alone is insufficient.", a:"It doesn’t authenticate header From:, and it doesn’t ensure content integrity."},
+{topic:"Email Security", q:"What is a common rollout path for DMARC at enterprises?", a:"Monitor only → quarantine → reject as alignment improves."},
+{topic:"Email Security", q:"What operational issue arises with third-party senders?", a:"Ensuring SPF/DKIM/DMARC align for services like Mailchimp or Salesforce."},
+{topic:"Email Security", q:"Why do providers publish MTA-STS over HTTPS?", a:"To authenticate policy retrieval and prevent DNS tampering without DNSSEC."},
 
-  /* Lecture 3 — Perfect vs Practical Secrecy */
-  {topic:"Perfect vs Practical Secrecy", q:"Define perfect secrecy.", a:"Ciphertext reveals no additional information about plaintext beyond prior beliefs.", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"How does the One-Time Pad achieve perfect secrecy?", a:"Truly random key as long as message, used once, combined via XOR.", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"Why is OTP impractical at scale?", a:"Key distribution and storage: keys must be as long as messages and never reused.", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"What is a Latin square property relevant here?", a:"Each ciphertext appears exactly once per row/column, avoiding patterns that leak info.", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"Define semantic security (informal).", a:"No PPT adversary can learn non-negligible information from ciphertext (given length).", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"Polynomial vs exponential time (intuition).", a:"Polynomial is feasible for realistic n; exponential becomes infeasible quickly.", ref:"L3"},
-  {topic:"Perfect vs Practical Secrecy", q:"Why doesn’t brute force defeat perfect secrecy?", a:"Even omnipotent adversaries learn nothing statistically from ciphertext alone.", ref:"L3"},
+/* 4) SYMMETRIC KEY ENCRYPTION & MODES (21) */
+{topic:"Symmetric Key Encryption & Modes", q:"Why are stream ciphers often used for real-time data?", a:"They can encrypt variable-length streams with low latency."},
+{topic:"Symmetric Key Encryption & Modes", q:"What flaw of ECB is visible on images?", a:"Repeated blocks leak patterns, revealing structure."},
+{topic:"Symmetric Key Encryption & Modes", q:"What property of IVs makes CBC safe across messages?", a:"Unpredictable uniqueness prevents identical first-block ciphertexts."},
+{topic:"Symmetric Key Encryption & Modes", q:"Why must CTR nonces never repeat under a key?", a:"Nonce reuse reveals keystream and enables XOR recovery of plaintexts."},
+{topic:"Symmetric Key Encryption & Modes", q:"How does GCM provide integrity?", a:"It authenticates ciphertext and AAD with GHASH/Poly1305-style tags."},
+{topic:"Symmetric Key Encryption & Modes", q:"When is SIV a good choice?", a:"When accidental nonce reuse must not break integrity."},
+{topic:"Symmetric Key Encryption & Modes", q:"Why is 'encrypt-then-MAC' preferred?", a:"It authenticates the exact ciphertext and detects tampering reliably."},
+{topic:"Symmetric Key Encryption & Modes", q:"How does CFB avoid using the block cipher’s decrypt primitive?", a:"It uses ENC to generate keystream on both sides."},
+{topic:"Symmetric Key Encryption & Modes", q:"What happens to errors in CTR?", a:"Bit errors flip corresponding bits only; no cascading."},
+{topic:"Symmetric Key Encryption & Modes", q:"Why is padding needed in CBC but not in CTR?", a:"CBC works on full blocks; CTR is a stream of keystream bytes."},
+{topic:"Symmetric Key Encryption & Modes", q:"What is XTS designed for?", a:"Disk sector encryption with tweak to bind to location."},
+{topic:"Symmetric Key Encryption & Modes", q:"How does AEAD help with replay?", a:"By authenticating sequence numbers or nonces as AAD."},
+{topic:"Symmetric Key Encryption & Modes", q:"What’s the risk of GCM with random 96-bit nonces drawn poorly?", a:"Collisions can occur; prefer counters or robust RNG."},
+{topic:"Symmetric Key Encryption & Modes", q:"Why is constant-time code important for ciphers?", a:"To avoid timing side channels leaking key material."},
+{topic:"Symmetric Key Encryption & Modes", q:"When should keys be rotated?", a:"On schedule or volume thresholds to limit exposure."},
+{topic:"Symmetric Key Encryption & Modes", q:"What’s the practical benefit of ChaCha20-Poly1305?", a:"Great speed and safety on CPUs without AES acceleration."},
+{topic:"Symmetric Key Encryption & Modes", q:"Which AEAD suites are typical in TLS today?", a:"AES-GCM and ChaCha20-Poly1305."},
+{topic:"Symmetric Key Encryption & Modes", q:"Why store IVs with ciphertexts?", a:"They’re needed to decrypt; IVs aren’t secrets."},
+{topic:"Symmetric Key Encryption & Modes", q:"What is a KDF’s role before encryption?", a:"Derive distinct keys/IVs from shared secrets."},
+{topic:"Symmetric Key Encryption & Modes", q:"How can nonce misuse be mitigated broadly?", a:"Use misuse-resistant modes (SIV) or frameworks enforcing counters."},
 
-  /* Lecture 4 — AES */
-  {topic:"Advanced Encryption Standard (AES)", q:"AES block size and key sizes.", a:"Block: 128 bits; Keys: 128, 192, 256 bits.", ref:"L4"},
-  {topic:"Advanced Encryption Standard (AES)", q:"AES design family.", a:"Substitution–permutation network (not Feistel).", ref:"L4"},
-  {topic:"Advanced Encryption Standard (AES)", q:"Why was DES deprecated?", a:"56-bit key is brute-forceable; 3DES was a slower interim.", ref:"L4"},
-  {topic:"Advanced Encryption Standard (AES)", q:"Two reasons AES is widely trusted.", a:"Open scrutiny; no practical breaks; flexible key lengths; broad HW/SW support.", ref:"L4"},
-  {topic:"Advanced Encryption Standard (AES)", q:"Does AES use the same routine for enc/dec?", a:"They’re related but implemented separately (inverse operations for decryption).", ref:"L4"},
+/* 5) CERTIFICATES / PKI (21) */
+{topic:"Certificates / PKI", q:"What is the principal function of a public-key certificate?", a:"To bind a public key to an identity, vouched for by a CA’s signature."},
+{topic:"Certificates / PKI", q:"What components form a typical validation chain?", a:"Leaf certificate, one or more intermediates, and a trusted root."},
+{topic:"Certificates / PKI", q:"Why must clients verify the hostname in a TLS cert?", a:"To ensure the cert was issued for the exact server name contacted."},
+{topic:"Certificates / PKI", q:"How do CRLs and OCSP differ?", a:"CRLs are signed lists; OCSP is per-certificate status queries."},
+{topic:"Certificates / PKI", q:"What’s the benefit of OCSP stapling?", a:"Lower latency and fewer privacy leaks to CAs for clients."},
+{topic:"Certificates / PKI", q:"Why is SAN usually more important than CN now?", a:"Browsers read SubjectAltName for hostnames; CN may be ignored."},
+{topic:"Certificates / PKI", q:"What do KU and EKU restrict?", a:"Key usage (operations) and extended key usage (purpose like serverAuth)."},
+{topic:"Certificates / PKI", q:"What is a root store?", a:"A platform’s list of trusted CA roots that anchor validation."},
+{topic:"Certificates / PKI", q:"When is a self-signed cert appropriate?", a:"As an internal trust anchor, not for the public Web."},
+{topic:"Certificates / PKI", q:"What is Certificate Transparency for?", a:"Detecting mis-issuance via public append-only logs."},
+{topic:"Certificates / PKI", q:"What does a CSR usually include?", a:"Subject info, public key, requested SANs, and a self-signature."},
+{topic:"Certificates / PKI", q:"What is certificate pinning conceptually?", a:"Limiting accepted keys/certs for a site to an expected set."},
+{topic:"Certificates / PKI", q:"What is name constraints used for?", a:"To restrict where a CA (or intermediate) can issue names."},
+{topic:"Certificates / PKI", q:"Why rotate keys and use short-lived certs?", a:"To reduce blast radius if keys are compromised."},
+{topic:"Certificates / PKI", q:"What is a path length constraint?", a:"A limit on how many CA intermediates can appear beneath a CA."},
+{topic:"Certificates / PKI", q:"Why do revocation checks sometimes fail open?", a:"Availability concerns; stapling/CT mitigate risk."},
+{topic:"Certificates / PKI", q:"Give an EKU suited for Web servers.", a:"id-kp-serverAuth."},
+{topic:"Certificates / PKI", q:"What is the danger of wildcard misconfiguration?", a:"It may cover unintended hosts or allow broader misuse."},
+{topic:"Certificates / PKI", q:"Why should private keys be generated on secure hardware when possible?", a:"To prevent extraction and ensure non-exportability."},
+{topic:"Certificates / PKI", q:"How do clients decide which root to trust?", a:"They rely on preinstalled OS/browser root programs."},
 
-  /* Lecture 5 — Modes of Operation */
-  {topic:"AES Modes of Operation", q:"Why avoid ECB?", a:"Equal plaintext blocks → equal ciphertext blocks; leaks structure.", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"CBC: purpose of IV; must it be secret?", a:"Ensures distinct ciphertexts; must be unique/unpredictable, not secret.", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"CBC: error propagation for a 1-bit error.", a:"Ruins the entire block and flips corresponding bits in the next block.", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"CFB: why ENC for decryption?", a:"Block cipher is used only to generate keystream; ENC used on both sides.", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"CTR: two properties.", a:"Parallelizable; no error propagation; nonce+counter (nonce public).", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"GCM adds what?", a:"Authenticated encryption: confidentiality + integrity via auth tag (AEAD).", ref:"L5"},
-  /* NEW — Symmetric Key Encryption & Modes (requested) */
-  {topic:"AES Modes of Operation", q:"Block cipher vs stream cipher — define and contrast.", a:"Block ciphers transform fixed-size blocks (e.g., AES-128); stream ciphers generate keystream to XOR with plaintext. Modes can turn a block cipher into a stream-like cipher (CTR).", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"Describe (in words) CBC encryption steps.", a:"Each plaintext block is XORed with previous ciphertext (or IV) then encrypted with the block cipher under the key.", ref:"L5"},
-  {topic:"AES Modes of Operation", q:"State properties of CTR mode.", a:"Requires unique nonce+counter; fully parallelizable; random access; no intrinsic integrity.", ref:"L5"},
+/* 6) BLOCKCHAIN & BITCOIN (24) */
+{topic:"Blockchain & Bitcoin", q:"What three properties summarize a blockchain ledger?", a:"Decentralised, immutable once confirmed, and transparent to verify."},
+{topic:"Blockchain & Bitcoin", q:"How is 'distributed ledger' different from a central database?", a:"Multiple nodes keep synchronized copies without a central controller."},
+{topic:"Blockchain & Bitcoin", q:"Why is Bitcoin’s identity model called pseudonymous?", a:"Transactions are public, but addresses aren’t tied to real names."},
+{topic:"Blockchain & Bitcoin", q:"What role do miners play?", a:"They package transactions into blocks and solve PoW to propose them."},
+{topic:"Blockchain & Bitcoin", q:"Why does Bitcoin use ECC instead of RSA?", a:"Comparable security with shorter keys and better performance."},
+{topic:"Blockchain & Bitcoin", q:"Which curve does Bitcoin adopt?", a:"secp256k1 with equation y² = x³ + 7."},
+{topic:"Blockchain & Bitcoin", q:"Outline the steps to produce a P2PKH address.", a:"Generate private key→public key→SHA-256→RIPEMD-160→add version→checksum→Base58."},
+{topic:"Blockchain & Bitcoin", q:"What purpose does the Base58Check checksum serve?", a:"Detects typos or corruption before funds are sent irreversibly."},
+{topic:"Blockchain & Bitcoin", q:"Why is Base58 used rather than Base64 for addresses?", a:"It avoids visually confusing characters and is shorter to type."},
+{topic:"Blockchain & Bitcoin", q:"What does a wallet manage beyond keys?", a:"It helps construct transactions and monitor balances."},
+{topic:"Blockchain & Bitcoin", q:"What is a UTXO and how is it spent?", a:"An unspent output 'locked' by a script; spenders provide a valid unlock script."},
+{topic:"Blockchain & Bitcoin", q:"Why must a consumed output be spent fully?", a:"Any remainder must return as a change output; otherwise value is lost."},
+{topic:"Blockchain & Bitcoin", q:"Differentiate ScriptPubKey and ScriptSig.", a:"ScriptPubKey locks value in outputs; ScriptSig unlocks it in inputs."},
+{topic:"Blockchain & Bitcoin", q:"What evidence is needed to spend a P2PKH output?", a:"A valid signature and the corresponding public key for the recipient address."},
+{topic:"Blockchain & Bitcoin", q:"What are the core fields in a block header?", a:"Version, previous block hash, Merkle root, timestamp, difficulty, nonce."},
+{topic:"Blockchain & Bitcoin", q:"Why include a Merkle root in the header?", a:"It commits to all transactions and enables efficient SPV proofs."},
+{topic:"Blockchain & Bitcoin", q:"How many transactions fit in a typical block?", a:"Roughly 1.5k–2.5k, depending on size/weight of transactions."},
+{topic:"Blockchain & Bitcoin", q:"What are the two components of miner reward?", a:"Block subsidy and the sum of transaction fees."},
+{topic:"Blockchain & Bitcoin", q:"Why is coinbase output time-locked for ~100 blocks?", a:"To prevent immediate spend and strengthen chain stability."},
+{topic:"Blockchain & Bitcoin", q:"What is halving and why does it exist?", a:"Reward cuts about every 210k blocks to control issuance and ensure scarcity."},
+{topic:"Blockchain & Bitcoin", q:"How does PoW make rewriting history infeasible?", a:"An attacker must re-mine the changed block and all descendants."},
+{topic:"Blockchain & Bitcoin", q:"What rule resolves competing branches?", a:"The longest valid chain wins as miners converge."},
+{topic:"Blockchain & Bitcoin", q:"What does 'six confirmations' typically signify?", a:"That reversing a transaction has become very unlikely."},
+{topic:"Blockchain & Bitcoin", q:"Which factors raise double-spend success chances?", a:"Attacker hash power and low confirmation thresholds."},
 
-  /* Lecture 6 — Hash Functions */
-  {topic:"Cryptographic Hash Functions", q:"List three core properties.", a:"Preimage, second preimage, collision resistance.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"Avalanche effect.", a:"Small input change → large unpredictable output change.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"Birthday bound for L-bit hash.", a:"≈2^(L/2) trials for 50% collision chance.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"Example mapping of property→application.", a:"Preimage: passwords; 2nd-preimage: downloads; Collision: signatures.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"Why SHA-1 is deprecated.", a:"Practical chosen-prefix collisions; browsers/platforms phased it out.", ref:"L6"},
-  /* NEW — Hash functions (requested) */
-  {topic:"Cryptographic Hash Functions", q:"Explain the birthday paradox and its implication for hash security.", a:"Collisions appear around √N trials; for an L-bit hash, ~2^(L/2) attempts find a collision ⇒ pick L large enough (e.g., 256-bit → 128-bit collision strength).", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"How should passwords be stored securely?", a:"Use a slow, salted, memory-hard KDF (e.g., scrypt/Argon2 or PBKDF2) storing salt and parameters with the hash; never store raw hashes or plaintext.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"What does 'storage of hashes themselves' involve?", a:"Protect integrity and access (ACLs, HSM/TPM for keys if HMACed); consider peppering; backup with care to avoid leak of offline attack material.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"List applications of cryptographic hash functions in crypto.", a:"Digital signatures (hash-then-sign), HMAC, commitment schemes, PRFs/DRBGs, Merkle trees, deduplication/fingerprinting.", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"Define preimage, 2nd-preimage, and collision resistance succinctly.", a:"Preimage: hard to find x for given h. Second-preimage: hard to find x'≠x s.t. H(x')=H(x). Collision: hard to find any x≠y with H(x)=H(y).", ref:"L6"},
-  {topic:"Cryptographic Hash Functions", q:"(Pseudocode) Simulate a birthday collision search.", a:"Generate random inputs, compute H, track in a map, stop on duplicate digest; complexity ≈2^(L/2).", ref:"L6"},
+/* 7) PUBLIC-KEY ENCRYPTION (21) */
+{topic:"Public-Key Encryption", q:"Why is public-key cryptography essential for Internet-scale systems?", a:"It solves key distribution without pre-shared secrets."},
+{topic:"Public-Key Encryption", q:"Why are real systems hybrid (KEM-DEM)?", a:"They use PKE to wrap a symmetric key, then encrypt data with a fast cipher."},
+{topic:"Public-Key Encryption", q:"What does IND-CPA guarantee?", a:"Ciphertexts leak no meaningful info under chosen-plaintext attacks."},
+{topic:"Public-Key Encryption", q:"Why demand IND-CCA2 in practice?", a:"To resist decryption oracles and adaptive adversaries."},
+{topic:"Public-Key Encryption", q:"What padding should be used with RSA encryption?", a:"OAEP; it randomizes structure and is CCA-resistant."},
+{topic:"Public-Key Encryption", q:"Why not encrypt large files with RSA directly?", a:"It is slow and has size limits; use hybrid with symmetric ciphers."},
+{topic:"Public-Key Encryption", q:"How is a public key authenticated to a recipient?", a:"Via certificates/PKI or other trust models."},
+{topic:"Public-Key Encryption", q:"What’s the consequence of weak randomness in PKE?", a:"Keys or randomness reuse can fully compromise confidentiality."},
+{topic:"Public-Key Encryption", q:"How does TLS 1.3 establish shared keys without RSA transport?", a:"With (EC)DHE key exchange feeding HKDF."},
+{topic:"Public-Key Encryption", q:"What’s the advantage of EC-based schemes over RSA at equal security?", a:"Smaller keys and faster operations."},
+{topic:"Public-Key Encryption", q:"Why is malleability dangerous?", a:"It enables controlled ciphertext modifications; use AEAD/CCA-secure schemes."},
+{topic:"Public-Key Encryption", q:"Who can verify a public-key signature?", a:"Anyone with the signer’s public key (public verifiability)."},
+{topic:"Public-Key Encryption", q:"What’s the relationship between signatures and non-repudiation?", a:"Signatures provide non-repudiation; MACs generally do not."},
+{topic:"Public-Key Encryption", q:"What fields compose an RSA public key?", a:"Modulus n and exponent e (e.g., 65537)."},
+{topic:"Public-Key Encryption", q:"How do you achieve confidentiality + authenticity efficiently?", a:"Encrypt with AEAD under a key exchanged via an authenticated KEM."},
+{topic:"Public-Key Encryption", q:"What problem does a KDF solve post-KEM?", a:"It derives independent keys and IVs from the shared secret."},
+{topic:"Public-Key Encryption", q:"What happens if you reuse RSA-OAEP randomness?", a:"It harms security; OAEP needs fresh randomness per message."},
+{topic:"Public-Key Encryption", q:"Why separate keys for encryption and signing?", a:"To avoid cross-protocol attacks and simplify key lifecycle."},
+{topic:"Public-Key Encryption", q:"What makes a PKE scheme deterministic and why is that risky?", a:"No randomness → leaks equality of plaintexts across encryptions."},
+{topic:"Public-Key Encryption", q:"What’s the main efficiency reason to stick to symmetric for data?", a:"Symmetric ciphers are orders of magnitude faster than PKE."},
 
-  /* Lecture 7 — MACs */
-  {topic:"Message Authentication Codes", q:"What does a MAC provide?", a:"Integrity and data-origin authentication using a shared secret.", ref:"L7"},
-  {topic:"Message Authentication Codes", q:"Security notion for MACs.", a:"EUF-CMA: unforgeable even with MAC oracle access.", ref:"L7"},
-  {topic:"Message Authentication Codes", q:"Two constructions.", a:"HMAC (hash-based) and CMAC (block-cipher-based).", ref:"L7"},
-  {topic:"Message Authentication Codes", q:"Correctness property.", a:"Verify_k(m, MAC_k(m)) must be true for all m.", ref:"L7"},
-  /* NEW — MAC vs Signature (requested) */
-  {topic:"Message Authentication Codes", q:"MAC vs Digital Signature — similarities and differences.", a:"Both provide integrity/DOA; MAC uses shared key (no public verifiability, no non-repudiation). Signatures use private/public keys (publicly verifiable, provide non-repudiation).", ref:"L7"},
+/* 8) DIFFIE–HELLMAN (DH) (21) */
+{topic:"Diffie–Hellman (DH)", q:"What shared value do both parties end up with in DH?", a:"The same secret (e.g., g^{ab}) derived from exchanged public values."},
+{topic:"Diffie–Hellman (DH)", q:"Why is unauthenticated DH vulnerable to MITM?", a:"An attacker can substitute public values for each side undetected."},
+{topic:"Diffie–Hellman (DH)", q:"How do protocols authenticate a DH exchange?", a:"By signing DH values or binding them to certificates/PSKs."},
+{topic:"Diffie–Hellman (DH)", q:"What is the benefit of ephemeral keys in DH?", a:"Forward secrecy; past sessions stay safe if long-term keys leak."},
+{topic:"Diffie–Hellman (DH)", q:"Why do safe primes matter for finite-field DH?", a:"They reduce small subgroup attacks; p=2q+1 is common."},
+{topic:"Diffie–Hellman (DH)", q:"What does generator g define?", a:"The cyclic subgroup used for DH operations."},
+{topic:"Diffie–Hellman (DH)", q:"How is the shared secret turned into usable keys?", a:"Run it through a KDF like HKDF to derive keys/IVs."},
+{topic:"Diffie–Hellman (DH)", q:"Why validate received EC points?", a:"To ensure they’re on the curve and correct subgroup (avoid invalid-curve attacks)."},
+{topic:"Diffie–Hellman (DH)", q:"What historical issue did Logjam highlight?", a:"Weak/legacy DH groups and parameter reuse risks."},
+{topic:"Diffie–Hellman (DH)", q:"How does TLS 1.3 use DH?", a:"It performs (EC)DHE and feeds secrets into HKDF for traffic keys."},
+{topic:"Diffie–Hellman (DH)", q:"What is key confirmation and why is it useful?", a:"It verifies both parties derived the same keys (e.g., Finished MACs)."},
+{topic:"Diffie–Hellman (DH)", q:"What’s the trade-off between EC-DH and classic DH?", a:"EC-DH is faster and uses smaller parameters at equal security."},
+{topic:"Diffie–Hellman (DH)", q:"Why rotate ephemeral keys per session?", a:"To limit compromise impact and preserve PFS."},
+{topic:"Diffie–Hellman (DH)", q:"What range should private exponents come from?", a:"Uniformly from the appropriate subgroup order."},
+{topic:"Diffie–Hellman (DH)", q:"What attack threatens reused nonces or weak RNG with DH?", a:"Related-key or partial leakage enabling key recovery."},
+{topic:"Diffie–Hellman (DH)", q:"How can small subgroup confinement be mitigated?", a:"Reject points not in the large prime-order subgroup."},
+{topic:"Diffie–Hellman (DH)", q:"When is PSK-DHE attractive?", a:"When you want both PFS and pre-shared key authentication."},
+{topic:"Diffie–Hellman (DH)", q:"What’s the role of nonces in DH handshakes?", a:"Provide freshness and tie exchanges to sessions."},
+{topic:"Diffie–Hellman (DH)", q:"Why is parameter negotiation constrained today?", a:"To avoid weak groups; suites pick vetted parameters."},
+{topic:"Diffie–Hellman (DH)", q:"What’s a common mistake when implementing DH?", a:"Skipping validation of peer public values."},
 
-  /* Lecture 8 — PKC / Number Theory */
-  {topic:"Public Key Encryption / Number Theory", q:"Motivation for public-key crypto.", a:"Internet-scale key distribution; asymmetric capabilities.", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Fermat’s little theorem (statement).", a:"For prime p and x not divisible by p: x^(p−1) ≡ 1 (mod p).", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Modular inverse.", a:"For a and n coprime, find a⁻¹ s.t. a·a⁻¹ ≡ 1 (mod n); via extended Euclid.", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Why public keys can be public.", a:"Security rests on hard problems (e.g., factoring, discrete log), not obscurity.", ref:"L8"},
-  /* NEW — Public-Key Encryption (requested) */
-  {topic:"Public Key Encryption / Number Theory", q:"Public-key vs symmetric-key encryption: main differences.", a:"PKE uses keypairs and is slower; SKE is fast with shared keys. PKE enables key exchange/signatures; SKE used for bulk data.", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Compare efficiency and key lengths for similar security.", a:"PKE keys are much larger (e.g., RSA-2048 ~ AES-112/128); symmetric ciphers are orders faster for bulk encryption.", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Different attacks/assumptions in PKE vs SKE.", a:"PKE: padding oracles, CCA on RSA; assumptions like factoring/DL. SKE: related-key, side-channels, bad modes/IV reuse.", ref:"L8"},
-  {topic:"Public Key Encryption / Number Theory", q:"Identify public vs private key in an RSA keypair.", a:"Public key: (n,e). Private key: (n,d) (and often p,q, CRT params).", ref:"L8"},
+/* 9) VPN (20) */
+{topic:"VPN", q:"What is the core benefit of a VPN over the Internet?", a:"It protects traffic confidentiality and integrity across untrusted networks."},
+{topic:"VPN", q:"How does an SSL/TLS VPN differ from IPsec VPN?", a:"It runs at transport/app layers (often 443) vs IPsec at network layer."},
+{topic:"VPN", q:"What is the difference between tunnel and transport mode in IPsec?", a:"Tunnel encrypts full IP packets; transport encrypts payload only."},
+{topic:"VPN", q:"What happens during encapsulation?", a:"Inner packets are encrypted and wrapped in a new outer header."},
+{topic:"VPN", q:"Why is NAT traversal relevant to IPsec?", a:"Encapsulation (e.g., UDP/4500) helps pass NAT devices."},
+{topic:"VPN", q:"What’s the role of IKEv2?", a:"Negotiates security associations and keys for IPsec."},
+{topic:"VPN", q:"What is PFS in the context of VPNs?", a:"Use of ephemeral DH to ensure past traffic stays safe on key compromise."},
+{topic:"VPN", q:"How does split tunneling change security posture?", a:"Only selected subnets go via VPN; other traffic bypasses protections."},
+{topic:"VPN", q:"Why can MTU become a problem with VPNs?", a:"Overhead reduces MTU; fragmentation/path-MTU issues can occur."},
+{topic:"VPN", q:"What is the advantage of TLS-VPN on port 443?", a:"It more easily traverses restrictive firewalls."},
+{topic:"VPN", q:"How can client and device both be authenticated?", a:"mTLS for device + EAP/user credentials for the person."},
+{topic:"VPN", q:"Which protocol provides integrity only in IPsec?", a:"AH; while ESP provides encryption and integrity."},
+{topic:"VPN", q:"What’s a route-based VPN?", a:"One using virtual interfaces and routing rather than ACL selectors."},
+{topic:"VPN", q:"When should keys/SAs be rekeyed?", a:"Periodically and after high data volumes to limit exposure."},
+{topic:"VPN", q:"What common misconfig breaks IPsec quickly?", a:"Mismatched proposals (cipher, DH group, lifetimes)."},
+{topic:"VPN", q:"What’s WireGuard’s appeal?", a:"Simple modern design using Noise; small codebase."},
+{topic:"VPN", q:"Where does a VPN not help?", a:"Compromised endpoints; the VPN sees plaintext at endpoints."},
+{topic:"VPN", q:"What logging is safe in VPN gateways?", a:"Metadata without sensitive payloads; ensure retention policies."},
+{topic:"VPN", q:"What is a policy-based VPN?", a:"Traffic selection by ACLs binds to SAs instead of routes."},
+{topic:"VPN", q:"Why check EKU/KU on VPN certs?", a:"Ensure certs are permitted for client/server auth."},
 
-  /* Lecture 9 — RSA */
-  {topic:"RSA Public Key Cipher", q:"RSA public key form.", a:"(n,e) with n=p·q; common e=65537.", ref:"L9"},
-  {topic:"RSA Public Key Cipher", q:"Why OAEP for RSA encryption?", a:"Randomizes structure; thwarts deterministic/structure-based attacks.", ref:"L9"},
-  {topic:"RSA Public Key Cipher", q:"RSA security rests on…", a:"Hardness of inverting RSA without d and factoring n.", ref:"L9"},
-  {topic:"RSA Public Key Cipher", q:"Private key component.", a:"d such that ed ≡ 1 (mod φ(n)).", ref:"L9"},
-  /* NEW — Pseudocode (requested ideas) */
-  {topic:"RSA Public Key Cipher", q:"(Pseudocode) RSA encryption and decryption.", a:"Encryption: c ≔ m^e mod n. Decryption: m ≔ c^d mod n; with CRT: m ≔ (m_p ⊙ m_q) using q_inv.", ref:"L9"},
-  {topic:"RSA Public Key Cipher", q:"Attack on RSA (high level).", a:"Padding oracle / Bleichenbacher on PKCS#1 v1.5; fix by OAEP and constant-time/error discipline.", ref:"L9"},
+/* 10) TOR (20) */
+{topic:"Tor", q:"What anonymity technique does Tor employ?", a:"Onion routing with layered encryption through multiple relays."},
+{topic:"Tor", q:"What are the roles of entry, middle, and exit relays?", a:"Entry sees your IP, exit sees destination, middle links hops only."},
+{topic:"Tor", q:"Why are entry guards used for long periods?", a:"To limit exposure to malicious first hops over time."},
+{topic:"Tor", q:"Why should HTTPS still be used over Tor?", a:"To keep content secret from exit relays and intermediaries."},
+{topic:"Tor", q:"What threat can a global passive adversary pose?", a:"Traffic correlation across entry and exit to deanonymize users."},
+{topic:"Tor", q:"How does Tor build a circuit?", a:"Client selects relays and negotiates keys hop-by-hop."},
+{topic:"Tor", q:"What are directory authorities responsible for?", a:"Publishing signed consensus of available relays."},
+{topic:"Tor", q:"What is a bridge relay for?", a:"To bypass censorship by using non-public entry points."},
+{topic:"Tor", q:"What are pluggable transports?", a:"Mechanisms to make Tor traffic look like other protocols to evade blocking."},
+{topic:"Tor", q:"What is stream isolation and why use it?", a:"Separating browsing contexts across circuits to reduce linkability."},
+{topic:"Tor", q:"What is the latency trade-off with Tor?", a:"Extra hops and crypto increase delay compared to direct connections."},
+{topic:"Tor", q:"Can exit nodes inject or read plaintext?", a:"Yes, if the destination is not using end-to-end encryption."},
+{topic:"Tor", q:"What is a .onion service?", a:"A hidden service accessible only within Tor; both ends remain anonymous."},
+{topic:"Tor", q:"Why avoid heavy downloads over Tor?", a:"They degrade the network and can worsen anonymity."},
+{topic:"Tor", q:"What mitigations exist against fingerprinting?", a:"Uniform browser fingerprint, circuit discipline, padding/delays."},
+{topic:"Tor", q:"How is censorship resistance improved?", a:"Using bridges, meek, or other pluggable transports."},
+{topic:"Tor", q:"What logging practices preserve privacy on relays?", a:"Avoid storing IPs or timestamps that can deanonymize users."},
+{topic:"Tor", q:"How does Tor differ fundamentally from a VPN?", a:"Tor is multi-hop and decentralized; a VPN is a single trusted tunnel."},
+{topic:"Tor", q:"What is guard discovery and why limit it?", a:"Frequent guard changes help adversaries; Tor limits churn."},
+{topic:"Tor", q:"Why does padding help only partially?", a:"It adds noise but cannot defeat a strong global correlator fully."},
 
-  /* Lecture 10 — Digital Signatures */
-  {topic:"Digital Signatures", q:"Three properties of signatures.", a:"Authenticity, integrity, non-repudiation; public verifiability.", ref:"L10"},
-  {topic:"Digital Signatures", q:"Signature security notion.", a:"EUF-CMA (existential unforgeability under chosen-message attack).", ref:"L10"},
-  {topic:"Digital Signatures", q:"Why hash-then-sign?", a:"Efficiency and fixed-size input to the signing primitive; binding to message.", ref:"L10"},
-  /* NEW — Pseudocode */
-  {topic:"Digital Signatures", q:"(Pseudocode) Forgery attempt on a weak signature scheme.", a:"Chosen-message attack to derive structure/collision; demonstrate on flawed hash or malleable scheme; mitigation: strong hash + proper domain separation.", ref:"L10"},
+/* 11) MAC / DIGITAL SIGNATURE (20) */
+{topic:"MAC / Digital Signature", q:"What problem do MACs and signatures both solve?", a:"They authenticate messages and detect tampering."},
+{topic:"MAC / Digital Signature", q:"Who can verify a MAC versus a signature?", a:"MAC: only key holders; signature: anyone with public key."},
+{topic:"MAC / Digital Signature", q:"Which provides non-repudiation and why?", a:"Signatures; only the signer holds the private key."},
+{topic:"MAC / Digital Signature", q:"Why are MACs preferred inside high-throughput protocols?", a:"They are faster than signatures and use symmetric keys."},
+{topic:"MAC / Digital Signature", q:"Give an example MAC and signature scheme.", a:"HMAC/CMAC; RSA/ECDSA/EdDSA respectively."},
+{topic:"MAC / Digital Signature", q:"Why not build a MAC from a raw hash directly?", a:"Prone to length-extension and design errors; use HMAC."},
+{topic:"MAC / Digital Signature", q:"How do you combine encryption and authenticity safely?", a:"Use AEAD or encrypt-then-MAC with distinct keys."},
+{topic:"MAC / Digital Signature", q:"Why should you use deterministic nonces for ECDSA (RFC6979) or EdDSA?", a:"Random nonce failure can leak the private key."},
+{topic:"MAC / Digital Signature", q:"How large is a typical MAC tag compared to a signature?", a:"MAC tags are short (e.g., 96–128 bits); signatures are much longer."},
+{topic:"MAC / Digital Signature", q:"What extra property do signatures bring that MACs lack?", a:"Public verifiability and auditability."},
+{topic:"MAC / Digital Signature", q:"What is EUF-CMA and why is it important?", a:"Resistance to chosen-message forgeries; baseline for security."},
+{topic:"MAC / Digital Signature", q:"Why separate keys for MAC and encryption?", a:"To avoid key reuse across primitives and limit cross-protocol risk."},
+{topic:"MAC / Digital Signature", q:"What is batch verification and when is it helpful?", a:"Verifying many signatures faster than individually, e.g., in logs."},
+{topic:"MAC / Digital Signature", q:"Why do protocols include nonces with MACs?", a:"To prevent replay of valid tags across sessions."},
+{topic:"MAC / Digital Signature", q:"Is a MAC suitable for public logs?", a:"No; use signatures for public verifiability."},
+{topic:"MAC / Digital Signature", q:"What makes a signature scheme malleable and why care?", a:"Alternate encodings can verify; protocols must canonicalize."},
+{topic:"MAC / Digital Signature", q:"How do you protect MAC keys at rest?", a:"Encrypt in keystores/HSMs and rotate regularly."},
+{topic:"MAC / Digital Signature", q:"What happens if two systems share the same MAC key inadvertently?", a:"They can forge each other’s messages; isolate and rotate keys."},
+{topic:"MAC / Digital Signature", q:"Why is AEAD often favored over MAC+ENC?", a:"It reduces complexity and misuse risk with a single primitive."},
 
-  /* Lecture 11 — Signatures, EA, Protocols */
-  {topic:"Signatures, Entity Auth & Protocols", q:"How DOA + freshness ⇒ EA?", a:"Origin known + freshness proof shows the peer is actively participating now.", ref:"L11"},
-  {topic:"Signatures, Entity Auth & Protocols", q:"Three freshness mechanisms.", a:"Timestamps, sequence numbers, nonces.", ref:"L11"},
-  {topic:"Signatures, Entity Auth & Protocols", q:"Give an example of challenge-response EA.", a:"Prover signs a fresh nonce from verifier; verifier checks signature.", ref:"L11"},
-
-  /* Lecture 12 — Discrete Logarithm Based PKC */
-  {topic:"Discrete Logarithm Based PKC", q:"High-level DH idea.", a:"Exchange public values to compute shared secret g^{ab} mod p (or EC).", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"Why ‘safe primes’ in DH?", a:"Mitigate small-subgroup attacks; p=2q+1.", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"What does ephemeral DH add?", a:"Perfect forward secrecy.", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"Discrete log problem (informal).", a:"Given g, p, and g^x mod p, find x; believed hard for suitable groups.", ref:"L12"},
-  /* NEW — Diffie–Hellman (requested) */
-  {topic:"Discrete Logarithm Based PKC", q:"How does DH key agreement work (plain)?", a:"Parties choose secrets a,b; exchange A=g^a, B=g^b; both compute K=g^{ab} mod p.", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"Why does DH work (intuition)? Risks and fixes.", a:"Exponent laws yield same secret; risks: MITM, small-subgroup; fixes: authentication (certs/PSK), parameter validation, safe primes.", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"Normal DH vs ECDH vs ECDHE.", a:"ECDH uses elliptic curves (smaller keys, faster). ECDHE adds ephemerality ⇒ forward secrecy.", ref:"L12"},
-  {topic:"Discrete Logarithm Based PKC", q:"(Pseudocode) Key agreement through DHE.", a:"Setup p,g; pick a,b; compute A,B; verify params; compute K; derive keys with KDF.", ref:"L12"},
-
-  /* Lecture 13 — PKI / Certificates */
-  {topic:"PKI / Certificates", q:"Purpose of a certificate.", a:"Bind a public key to an identity via CA signature.", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Chain components.", a:"Leaf + intermediates up to a trusted root.", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Trust models: PKI vs TOFU vs WoT.", a:"PKI=CA trust; TOFU=first-use trust; WoT=user attestations.", ref:"L13"},
-  {topic:"PKI / Certificates", q:"What does revocation try to solve?", a:"Invalidate previously trusted certs (CRLs/OCSP).", ref:"L13"},
-  /* NEW — Certificates / PKI (requested) */
-  {topic:"PKI / Certificates", q:"Main role of a public key certificate and how achieved.", a:"Authenticate binding of subject identity to a public key via CA’s digital signature.", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Main components of an X.509 certificate.", a:"Subject, SubjectPublicKeyInfo, Issuer, Serial, Validity, Extensions (SAN, KU/EKU), Signature (alg + value).", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Validation steps for a public key certificate.", a:"Build chain to a trusted root; verify signatures; check validity period, revocation, key usage, name/SAN matches hostname.", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Root vs intermediate vs leaf certificates.", a:"Root is self-signed trust anchor; intermediates are CA-signed to delegate trust; leaf identifies end-entity (server/client/code).", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Certificate stores and where they live.", a:"OS/browser trust stores contain roots; apps often rely on OS (Windows, macOS Keychain, NSS).", ref:"L13"},
-  {topic:"PKI / Certificates", q:"Applications of certificates.", a:"TLS server/client auth, S/MIME, code/document signing, VPNs, device identity (802.1X).", ref:"L13"},
-  {topic:"PKI / Certificates", q:"(Pseudocode) Certificate verification (high level).", a:"Input chain; for each: verify signature; enforce policies; check revocation; ensure name matches target; accept only if a trust anchor reached.", ref:"L13"},
-
-  /* Lecture 14 — TLS / SSL */
-  {topic:"TLS / SSL", q:"Purpose of TLS handshake.", a:"Agree ciphers, authenticate server, derive keys for record protection.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Record protocol protections.", a:"Confidentiality and integrity (AEAD in modern TLS).", ref:"L14"},
-  {topic:"TLS / SSL", q:"What is SNI used for?", a:"Client indicates target hostname to pick correct certificate/key.", ref:"L14"},
-  /* NEW — TLS (requested) */
-  {topic:"TLS / SSL", q:"List TLS 1.3 handshake messages and purpose.", a:"ClientHello (params, key share), ServerHello (selects suite, key share), EncryptedExtensions, Certificate(+Verify), Finished (key confirmation).", ref:"L14"},
-  {topic:"TLS / SSL", q:"Client actions in TLS handshake and rationale.", a:"Offer versions/cipher suites, send key share, verify server cert/Finished, send its Finished; optionally send client cert.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Server actions in TLS handshake and rationale.", a:"Select suite, send key share, send cert and proof (CertificateVerify), send Finished; optionally request client auth.", ref:"L14"},
-  {topic:"TLS / SSL", q:"High-level steps of the TLS handshake.", a:"Hello exchange → key agreement → server auth → key confirmation → (optional client auth) → protected data.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Security of TLS handshake: what prevents MITM?", a:"Certificate validation, signatures over transcript (CertificateVerify) and Finished MAC key confirmation.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Differences between TLS 1.2 and 1.3.", a:"1.3 removes static RSA/DSA, mandates (EC)DHE+AEAD, 0-RTT option, simpler ciphersuites, encrypts more of the handshake.", ref:"L14"},
-  {topic:"TLS / SSL", q:"TLS vs QUIC.", a:"QUIC uses TLS 1.3 for crypto but runs over UDP with built-in transport (streams, loss recovery); handshake integrated with transport; faster resumption/0-RTT.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Ciphersuite properties to identify.", a:"Key exchange (ECDHE), authentication (RSA/ECDSA/EdDSA), bulk (AES-GCM/ChaCha20-Poly1305), key lengths, AEAD mode.", ref:"L14"},
-  {topic:"TLS / SSL", q:"Forward secrecy — define and how TLS achieves it.", a:"Compromise of long-term keys does not reveal past session keys; achieved with ephemeral (EC)DHE.", ref:"L14"},
-  {topic:"TLS / SSL", q:"(Pseudocode) TLS 1.3 client-side handshake (outline).", a:"Build ClientHello with key share; receive ServerHello; derive secrets (HKDF); verify Certificate/Finished; send Finished; switch to application keys.", ref:"L14"},
-
-  /* Lecture 15 — TLS 1.2 Handshake */
-  {topic:"TLS 1.2 Handshake", q:"Role of ClientRandom and ServerRandom.", a:"Fresh nonces mixed into key derivation to prevent replay.", ref:"L15"},
-  {topic:"TLS 1.2 Handshake", q:"What is the ‘key block’?", a:"Client/Server write keys and integrity keys for both directions.", ref:"L15"},
-  {topic:"TLS 1.2 Handshake", q:"Why ephemeral (EC)DHE in TLS?", a:"Provides forward secrecy.", ref:"L15"},
-
-  /* Lecture 16 — Email Security (transport) */
-  {topic:"Email Security", q:"Implicit TLS vs STARTTLS.", a:"Implicit: dedicated TLS from byte 1. STARTTLS: plaintext upgraded via command.", ref:"L16"},
-  {topic:"Email Security", q:"Why transport TLS isn’t E2EE.", a:"Hop-by-hop; servers can read and store plaintext.", ref:"L16"},
-  {topic:"Email Security", q:"Two SMTP TLS enforcement tools.", a:"MTA-STS and DANE.", ref:"L16"},
-  {topic:"Email Security", q:"PGP vs S/MIME (very high level).", a:"Both E2EE: PGP web-of-trust, S/MIME uses X.509/PKI.", ref:"L16"},
-  /* NEW — Email Security (requested) */
-  {topic:"Email Security", q:"Implicit vs explicit TLS: SMTPS (465) vs SMTP with STARTTLS (587/25).", a:"SMTPS uses TLS from start on a dedicated port; STARTTLS upgrades an existing plaintext session after EHLO.", ref:"L16"},
-  {topic:"Email Security", q:"SPF: how it works and what it provides.", a:"DNS TXT lists authorised sending IPs for a domain; receivers check connecting host IP ⇒ prevents spoofing of envelope sender, not message integrity/content.", ref:"L16"},
-  {topic:"Email Security", q:"DKIM: how it works and what it provides.", a:"Sending domain signs selected headers/body; receivers fetch public key via DNS to verify ⇒ domain-level DOA and integrity across relays.", ref:"L16"},
-  {topic:"Email Security", q:"DMARC: how it works and what it provides.", a:"Policy published in DNS aligning SPF/DKIM with header From; receivers apply policy (none/quarantine/reject) and send reports.", ref:"L16"},
-  {topic:"Email Security", q:"How to achieve real E2EE for email.", a:"Encrypt/sign at the endpoints with OpenPGP or S/MIME; manage keys (WoT or PKI); messages remain opaque to intermediaries.", ref:"L16"},
-
-  /* Lecture 17 — Tor */
-  {topic:"Tor", q:"How Tor provides anonymity.", a:"Layered encryption over 3 hops; each relay knows only neighbors.", ref:"L17"},
-  {topic:"Tor", q:"Exit node limitation.", a:"Exits see plaintext to the open Internet unless E2EE is used.", ref:"L17"},
-  {topic:"Tor", q:"Does Tor give integrity/confidentiality end-to-end?", a:"Only within circuit; to destination use TLS/HTTPS for E2EE.", ref:"L17"},
-  /* NEW — Tor (requested) */
-  {topic:"Tor", q:"What service does Tor provide and why it works (intuition)?", a:"Traffic-relay anonymity via onion routing and path diversity; hides source IP from destination and vice versa (with limitations).", ref:"L17"},
-  {topic:"Tor", q:"Key limitations of Tor.", a:"Global adversaries, website fingerprinting, malicious exits, performance/latency.", ref:"L17"},
-
-  /* Lecture 18 — VPN */
-  {topic:"VPN", q:"TLS-VPN vs IPsec.", a:"TLS-VPN at transport/app; IPsec at network (transport/tunnel modes).", ref:"L18"},
-  {topic:"VPN", q:"Encapsulation meaning.", a:"Original packet encrypted and wrapped in a new IP header between gateways.", ref:"L18"},
-  {topic:"VPN", q:"IPsec AH vs ESP.", a:"AH provides integrity/auth but no confidentiality; ESP provides encryption (can also auth).", ref:"L18"},
-  /* NEW — VPN (requested) */
-  {topic:"VPN", q:"Concept/purpose of a VPN vs related tech.", a:"Creates an encrypted tunnel over untrusted networks for private connectivity; differs from Tor (anonymity) and TLS (app-level).", ref:"L18"},
-  {topic:"VPN", q:"Encapsulation/decapsulation for TLS-VPN vs IPsec.", a:"TLS-VPN wraps TCP/UDP payloads in TLS; IPsec ESP tunnels entire IP packet (tunnel mode) or protects transport payload (transport mode).", ref:"L18"},
-  {topic:"VPN", q:"Applications and limitations of VPNs.", a:"Corp remote access, site-to-site, geo access; limitations: trust in provider, metadata leakage, split-tunnel risks, performance.", ref:"L18"},
-  {topic:"VPN", q:"Role of cryptography in VPNs.", a:"Key exchange (TLS or IKE), symmetric encryption (AES/ChaCha), integrity (HMAC/AEAD), certs/PSKs for auth.", ref:"L18"},
-  {topic:"VPN", q:"(Pseudocode) IPsec tunnel encapsulation (outline).", a:"Take IP packet → ESP: add header, encrypt payload, add auth tag; outer IP header added; reverse on decap.", ref:"L18"},
-
-  /* Lecture 19 — DNSSEC */
-  {topic:"DNSSEC", q:"What does DNSSEC provide?", a:"Data origin authentication and integrity for DNS answers; not confidentiality.", ref:"L19"},
-  {topic:"DNSSEC", q:"Name DNSSEC record types.", a:"RRSIG, DNSKEY, DS, NSEC/NSEC3.", ref:"L19"},
-  {topic:"DNSSEC", q:"DANE (at a glance).", a:"TLSA records bind TLS keys/certs to DNS with DNSSEC validation.", ref:"L19"},
-  /* NEW — DNSSEC (requested) */
-  {topic:"DNSSEC", q:"How does DNSSEC provide its service and what are limitations?", a:"Chains of signatures from zone to root; resolvers validate. Limitations: no confidentiality, deployment gaps, NSEC privacy trade-offs.", ref:"L19"},
-  {topic:"DNSSEC", q:"How DNSSEC ties to other services.", a:"Enables DANE (TLSA for TLS, SMIMEA for email), SSHFP validation, mitigating MX downgrade.", ref:"L19"},
-
-  /* Lecture 20 — Email Sender Authentication */
-  {topic:"Email Sender Authentication", q:"What does SPF do?", a:"Authorizes sending IPs for a domain via DNS TXT; combats spoofing.", ref:"L20"},
-  {topic:"Email Sender Authentication", q:"What does DKIM provide?", a:"Domain-based signing of mail headers/body; receiver verifies with DNS key.", ref:"L20"},
-  {topic:"Email Sender Authentication", q:"What is DMARC for?", a:"Aligns SPF/DKIM with ‘From’ domain and sets receiver policy (none/quarantine/reject).", ref:"L20"},
-
-  /* Lecture 21 — Blockchain & Bitcoin (overview) */
-  {topic:"Blockchain & Bitcoin", q:"Hash-linked blockchain idea.", a:"Blocks chained by previous hash; tampering breaks links.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"Proof-of-work purpose.", a:"Sybil-resistant consensus by making block creation costly.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"What’s a UTXO?", a:"Unspent transaction output model for tracking spendable coins.", ref:"L21"},
-  /* NEW — Blockchain (requested) */
-  {topic:"Blockchain & Bitcoin", q:"Core blockchain properties.", a:"Append-only ledger, distributed consensus, tamper-evident via hashes, eventual consistency.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"Bitcoin address (high level).", a:"Derived from a public key via hashing (e.g., HASH160) and encoded (Base58Check).", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"Bitcoin transaction structure.", a:"Inputs reference previous UTXOs with scriptSig; outputs define scriptPubKey and amounts; fees = inputs − outputs.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"scriptSig vs scriptPubKey.", a:"scriptPubKey sets spending conditions; scriptSig provides data to satisfy them at spend time.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"How proof-of-work works.", a:"Miners vary nonce to find block header hash below target; difficulty adjusts to target interval.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"Purpose of mining.", a:"Secure consensus, order transactions, mint new coins via block subsidy + fees.", ref:"L21"},
-  {topic:"Blockchain & Bitcoin", q:"(Pseudocode) Send a Bitcoin transaction (simplified).", a:"Select UTXOs → build tx → sign inputs → broadcast → wait for confirmations.", ref:"L21"}
+/* 12) DNSSEC (20) */
+{topic:"DNSSEC", q:"What assurance does DNSSEC add to DNS answers?", a:"Authenticity and integrity; it does not provide confidentiality."},
+{topic:"DNSSEC", q:"Which records enable signed DNS?", a:"DNSKEY (public keys), RRSIG (signatures), DS (delegation signatures)."},
+{topic:"DNSSEC", q:"How is the chain of trust formed?", a:"Each parent publishes a DS for the child’s DNSKEY up to the root."},
+{topic:"DNSSEC", q:"What is the resolver’s job in DNSSEC?", a:"Verify RRSIGs using DNSKEYs and validate the DS path."},
+{topic:"DNSSEC", q:"What is NSEC/NSEC3 used for?", a:"To prove non-existence of names or types with signed negative answers."},
+{topic:"DNSSEC", q:"Why are responses larger with DNSSEC?", a:"They include keys/signatures; EDNS0 handles size."},
+{topic:"DNSSEC", q:"What’s the distinction between KSK and ZSK?", a:"ZSK signs zone records; KSK signs the DNSKEY RRset and DS at parent."},
+{topic:"DNSSEC", q:"What happens on validation failure?", a:"Resolvers must treat data as bogus and not accept it."},
+{topic:"DNSSEC", q:"How often should zones be resigned?", a:"Regularly within validity windows to avoid expiration."},
+{topic:"DNSSEC", q:"How does DANE rely on DNSSEC?", a:"TLSA records are only trustworthy if DNSSEC validates."},
+{topic:"DNSSEC", q:"Why do email auth mechanisms benefit from DNSSEC?", a:"It protects SPF/DKIM/DMARC TXT records from spoofing."},
+{topic:"DNSSEC", q:"What is a trust anchor?", a:"A preconfigured key (e.g., root) that starts validation."},
+{topic:"DNSSEC", q:"Why is glue not signed and what’s the implication?", a:"Glue is out-of-bailiwick; resolvers must apply additional checks."},
+{topic:"DNSSEC", q:"What operational challenge exists during key rollover?", a:"Coordinating DS updates and overlapping keys safely."},
+{topic:"DNSSEC", q:"What algorithms are common for signing today?", a:"RSA, ECDSA P-256, and Ed25519."},
+{topic:"DNSSEC", q:"What’s the relationship between TTLs and validation?", a:"Short TTLs speed updates but increase validation traffic."},
+{topic:"DNSSEC", q:"How do validating and stub resolvers differ?", a:"Stub forwards queries; validating performs signature checks locally."},
+{topic:"DNSSEC", q:"Why is SERVFAIL often seen with broken DNSSEC?", a:"Validators refuse to return bogus data when checks fail."},
+{topic:"DNSSEC", q:"What is zone walking and how does NSEC3 help?", a:"Enumerating names via NSEC; NSEC3 hashes next names to hinder it."},
+{topic:"DNSSEC", q:"How does DNSSEC complement PKI for SMTP TLS?", a:"It authenticates DANE TLSA records binding keys to MX hosts."},
 ];
 
-/* ------------------------- Auto-augmentation engine -------------------------
-   Ensures ≥20 per lecture without removing any originals.
-   Templates keep content faithful to seeds (cloze/T-F/why/contrast/rephrase).
------------------------------------------------------------------------------ */
-
-const MIN_PER_TOPIC = 20;
-
-function toCloze(text){
-  const words = text.split(/\s+/);
-  if(words.length < 3) return {q:`Fill in the blank: ${text}`, a:text};
-  const idx = Math.max(0, Math.min(words.length-1, Math.floor(words.length/2)));
-  const removed = words.slice(idx, idx+Math.min(2, words.length-idx)).join(" ");
-  const q = `Fill in the blank: ${words.slice(0,idx).join(" ")} <u>____</u> ${words.slice(idx+Math.min(2, words.length-idx)).join(" ")}`.replace(/\s+/g," ").trim();
-  return {q, a:`${removed}`.trim()};
-}
-function asTrueFalse(seed){
-  const s = seed.q.replace(/^\s*(what|why|when|how|define|list|name|state)\b.*?\??\s*/i,'').trim();
-  const stmt = (s ? `${capitalize(s.replace(/\.$/,''))}.` : `${seed.a.replace(/\.$/,'')}.`);
-  const truth = true;
-  return {q:`True or False: ${stmt}`, a:`True — ${seed.a}`};
-}
-function asContrast(seed){
-  if(/vs|compare|contrast/i.test(seed.q)) return null;
-  if(seed.a.includes(';') || seed.a.includes(' vs ')){
-    return {q:`Contrast the two sides in: ${seed.q}`, a:seed.a};
-  }
-  return null;
-}
-function whyMatters(seed){
-  return {q:`Why does this matter? → ${seed.q}`, a:seed.a};
-}
-function rephraseShort(seed){
-  let head = seed.q.replace(/\?+$/,'').trim();
-  head = head.length>80 ? head.slice(0,77)+'…' : head;
-  return {q:`Recall: ${head}?`, a:seed.a};
-}
-function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
-
-function generateVariantsForSeed(seed){
-  const variants = [];
-  variants.push(toCloze(seed.a));
-  variants.push(asTrueFalse(seed));
-  variants.push(whyMatters(seed));
-  variants.push(rephraseShort(seed));
-  const c = asContrast(seed); if(c) variants.push(c);
-  return variants.map(v=>({topic:seed.topic, q:v.q, a:v.a, ref:seed.ref, derivedFrom:seed.q}));
-}
-
-function ensureMinPerTopic(seeds, minPerTopic=MIN_PER_TOPIC){
-  const byTopic = {};
-  for(const s of seeds){
-    (byTopic[s.topic] ||= []).push(s);
-  }
-  const out = [];
-  for(const topic of Object.keys(byTopic)){
-    const originals = byTopic[topic].slice();
-    const pool = originals.slice();
-    let i = 0;
-    while(pool.length < minPerTopic){
-      const src = originals[i % originals.length];
-      const vs = generateVariantsForSeed(src);
-      for(const v of vs){
-        if(pool.length >= minPerTopic) break;
-        if(!pool.some(p=>p.q===v.q)){
-          pool.push(v);
-        }
-      }
-      i++;
-      if(i>5000) break;
-    }
-    out.push(...pool);
-  }
-  return out;
-}
-
-/* ------------------------------ Deck building ------------------------------ */
-
-let MASTER = ensureMinPerTopic(SEEDS, MIN_PER_TOPIC);
-
-const TOPICS = [...new Set(MASTER.map(x=>x.topic))]
-  .sort((a,b) => getLectureNumberForTopic(a) - getLectureNumberForTopic(b));
-
-
-let deck = [];
+/* ============================= APP LOGIC / UI ============================= */
+const STORAGE = "cybr372_known_noblanks_v1";
+let known = new Set(JSON.parse(localStorage.getItem(STORAGE) || "[]"));
+let VIEW = [];
 let idx = 0;
-let rng = Math.random;
-let known = new Set(JSON.parse(localStorage.getItem('known')||'[]'));
-let currentFilter = '';
-let currentSearch = '';
 
-function updateRng(){
-  const shuffleOn = document.getElementById('shuffleToggle').checked;
-  rng = shuffleOn ? mulberry32(Date.now()>>>0) : Math.random;
+const els = {
+  card: document.getElementById("card"),
+  tag: document.getElementById("tag"),
+  q: document.getElementById("q"),
+  a: document.getElementById("a"),
+  count: document.getElementById("count"),
+  progBar: document.getElementById("prog"),
+  progTxt: document.getElementById("progressText"),
+  knownStat: document.getElementById("knownStat"),
+  chips: document.getElementById("chips"),
+  topicFilter: document.getElementById("topicFilter"),
+  search: document.getElementById("searchBox"),
+  shuffleToggle: document.getElementById("shuffleToggle"),
+  shuffleBtn: document.getElementById("shuffleBtn"),
+  resetBtn: document.getElementById("resetBtn"),
+  deckSize: document.getElementById("deckSize"),
+};
+
+const TOPICS = [...new Set(CARDS.map(c=>c.topic))].sort();
+
+function mulberry32(seed){ return function(){ let t = seed += 0x6D2B79F5; t = Math.imul(t ^ (t>>>15), t | 1); t ^= t + Math.imul(t ^ (t>>>7), t | 61); return ((t ^ (t>>>14)) >>> 0) / 4294967296; } }
+function shuffle(arr, rng=Math.random){ const a=[...arr]; for(let i=a.length-1;i>0;--i){ const j=Math.floor(rng()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
+function normalize(s){ return (s||"").toLowerCase(); }
+
+function renderTopics(){
+  TOPICS.forEach(t=>{
+    const opt = document.createElement("option"); opt.value=t; opt.textContent=t; els.topicFilter.appendChild(opt);
+    const chip = document.createElement("button"); chip.className="chip"; chip.textContent=t;
+    chip.onclick=()=>{ els.topicFilter.value = (els.topicFilter.value===t ? "" : t); applyFilters(); highlightChips(); };
+    els.chips.appendChild(chip);
+  });
+}
+function highlightChips(){
+  [...els.chips.children].forEach(ch => ch.classList.toggle("active", ch.textContent===els.topicFilter.value && ch.textContent!==""));
 }
 
-function rebuildDeck(){
-  const topic = currentFilter;
-  const search = currentSearch.toLowerCase();
-  deck = MASTER.filter(c => (!topic || c.topic===topic) && (!search || (c.q.toLowerCase().includes(search) || c.a.toLowerCase().includes(search))));
-  updateRng();
-  shuffleInPlace(deck, rng);
+function applyFilters(){
+  const t = els.topicFilter.value;
+  const q = normalize(els.search.value);
+  VIEW = CARDS
+    .map((c,i)=>({...c, __id:i}))
+    .filter(c=> !t || c.topic===t)
+    .filter(c=> !q || normalize(c.q).includes(q) || normalize(c.a).includes(q));
+  els.deckSize.textContent = VIEW.length;
+  if(els.shuffleToggle.checked) VIEW = shuffle(VIEW, mulberry32(173));
   idx = 0;
-  updateTopicProgress();
-  renderCard();
-  updateSidebar();
+  render();
 }
 
-function updateSidebar(){
-  // Deck size
-  document.getElementById('deckSize').textContent = deck.length;
-
-  // Chips (left panel)
-  document.getElementById('chips').innerHTML = TOPICS.map(t=>{
-    const active = (t===currentFilter) ? 'active' : '';
-    return `<div class="chip ${active}" data-topic="${escapeHTML(t)}">${escapeHTML(formatLectureLabel(t))}</div>`;
-  }).join('');
-
-  // Dropdown (toolbar)
-  const select = document.getElementById('topicFilter');
-  select.innerHTML = `<option value="">All lectures</option>` + TOPICS.map(t=>{
-    const sel = (t===currentFilter)?' selected':'';
-    return `<option value="${escapeHTML(t)}"${sel}>${escapeHTML(formatLectureLabel(t))}</option>`;
-  }).join('');
-}
-
-
-function renderCard(){
-  const qEl = document.getElementById('q');
-  const aEl = document.getElementById('a');
-  const tag = document.getElementById('tag');
-  const card = document.getElementById('card');
-  if(deck.length===0){
-    qEl.textContent = "No cards match your filters.";
-    aEl.textContent = "";
-    card.classList.remove('revealed');
-    document.getElementById('count').textContent = `0 / 0`;
-    document.getElementById('progressText').textContent = `0% done`;
-    document.getElementById('prog').value = 0;
-    document.getElementById('knownStat').innerHTML = '';
-    tag.textContent = '—';
-    return;
+function render(){
+  if(!VIEW.length){
+    els.tag.textContent = "—"; els.q.textContent = "No cards match"; els.a.textContent = ""; els.a.style.display="none";
+    els.count.textContent = "0 / 0"; els.knownStat.textContent = "";
+    els.progBar.value = 0; els.progTxt.textContent = "0% done"; return;
   }
-  const c = deck[idx];
-  qEl.innerHTML = escapeHTML(c.q);
-  aEl.innerHTML = escapeHTML(c.a);
-  tag.textContent = c.topic;
-  const id = cardId(c);
-  card.classList.toggle('revealed', known.has(id));
-  document.getElementById('count').textContent = `${idx+1} / ${deck.length}`;
-  const pct = Math.round((Array.from(known).filter(k=> deck.some(d=>cardId(d)===k)).length / deck.length)*100);
-  document.getElementById('progressText').textContent = `${pct}% done`;
-  document.getElementById('prog').value = pct;
-  const knownInTopic = Array.from(known).filter(k=>{
-    const m = MASTER.find(d=>cardId(d)===k);
-    return m && (!currentFilter || m.topic===currentFilter);
-  }).length;
-  document.getElementById('knownStat').innerHTML = `<span class="${pct===100?'ok':''}">${knownInTopic}</span> known in current filter`;
+  const c = VIEW[idx];
+  els.card.classList.remove("revealed");
+  els.tag.textContent = c.topic;
+  els.q.textContent = c.q;
+  els.a.textContent = c.a;
+  els.a.style.display="none";
+  els.count.textContent = `${idx+1} / ${VIEW.length}`;
+  const knownCount = [...known].filter(id => VIEW.find(v=>v.__id===id)).length;
+  const pct = Math.round( (knownCount / VIEW.length) * 100 );
+  els.progBar.value = pct; els.progTxt.textContent = `${pct}% marked known`;
+  els.knownStat.textContent = `Known: ${knownCount}/${VIEW.length}`;
 }
 
-function cardId(c){ return c.topic+'|'+c.q+'|'+(c.derivedFrom||'') }
+function flip(){ if(!VIEW.length) return; els.card.classList.toggle("revealed"); els.a.style.display = els.card.classList.contains("revealed") ? "block" : "none"; if(els.card.classList.contains("revealed")) known.add(VIEW[idx].__id), saveKnown(); }
+function prev(){ if(!VIEW.length) return; idx = (idx-1+VIEW.length)%VIEW.length; render(); }
+function next(){ if(!VIEW.length) return; idx = (idx+1)%VIEW.length; render(); }
+function saveKnown(){ localStorage.setItem(STORAGE, JSON.stringify([...known])); }
+function resetProgress(){ if(confirm("Reset known/seen progress?")){ known.clear(); saveKnown(); render(); } }
 
-function markKnown(toggle=true){
-  if(deck.length===0) return;
-  const id = cardId(deck[idx]);
-  if(toggle){
-    if(known.has(id)) known.delete(id); else known.add(id);
-  }else{
-    known.add(id);
-  }
-  localStorage.setItem('known', JSON.stringify(Array.from(known)));
-  renderCard();
-}
-
-function next(){ if(deck.length===0) return; idx=(idx+1)%deck.length; renderCard() }
-function prev(){ if(deck.length===0) return; idx=(idx-1+deck.length)%deck.length; renderCard() }
-
-function updateTopicProgress(){
-  const counts = {};
-  for(const t of TOPICS) counts[t]=0;
-  for(const c of MASTER) counts[c.topic]++;
-  const txt = TOPICS.map(t=>`${t}: ${counts[t]}`).join(' • ');
-  document.getElementById('topicProgress').textContent = txt;
-}
-
-function getLectureNumberForTopic(topic){
-  // find the first seed for this topic and read ref like "L14"
-  const s = MASTER.find(x => x.topic === topic && /^L\d+/.test(x.ref||""));
-  if(!s) return Infinity; // topics without an L# go last
-  const m = (s.ref || "").match(/^L(\d+)/);
-  return m ? parseInt(m[1], 10) : Infinity;
-}
-function formatLectureLabel(topic){
-  const n = getLectureNumberForTopic(topic);
-  if(!isFinite(n)) return topic;
-  return `L${String(n).padStart(2,'0')} — ${topic}`;
-}
-
-
-
-/* ------------------------------- UI wiring -------------------------------- */
-window.addEventListener('DOMContentLoaded', ()=>{
-  updateSidebar();
-  rebuildDeck();
-
-  const card = document.getElementById('card');
-  card.addEventListener('click', ()=> card.classList.toggle('revealed'));
-
-  document.addEventListener('keydown', (e)=>{
-    if(e.key==='ArrowRight'){ next(); e.preventDefault(); }
-    else if(e.key==='ArrowLeft'){ prev(); e.preventDefault(); }
-    else if(e.key===' ' || e.key==='Enter'){ document.getElementById('card').classList.toggle('revealed'); e.preventDefault(); }
-    else if(e.key==='s' || e.key==='S'){ markKnown(); }
-  });
-
-  document.getElementById('shuffleBtn').addEventListener('click', ()=>{ shuffleInPlace(deck, mulberry32(Date.now()>>>0)); idx=0; renderCard(); });
-  document.getElementById('shuffleToggle').addEventListener('change', ()=> rebuildDeck());
-  document.getElementById('searchBox').addEventListener('input', (e)=>{ currentSearch=e.target.value; rebuildDeck(); });
-  document.getElementById('topicFilter').addEventListener('change', (e)=>{ currentFilter=e.target.value||''; rebuildDeck(); });
-
-  document.getElementById('chips').addEventListener('click', (e)=>{
-    const chip = e.target.closest('.chip');
-    if(!chip) return;
-    const t = chip.getAttribute('data-topic');
-    currentFilter = (currentFilter===t) ? '' : t;
-    rebuildDeck();
-  });
-
-  document.getElementById('resetBtn').addEventListener('click', ()=>{
-    if(confirm('Reset known/seen progress?')){ known.clear(); localStorage.removeItem('known'); renderCard(); }
-  });
-
-  document.getElementById('exportBtn').addEventListener('click', ()=>{
-    const payload = { version:1, date:new Date().toISOString(), known:Array.from(known), seeds:SEEDS, deck:MASTER };
-    const json = JSON.stringify(payload, null, 2);
-    document.getElementById('jsonArea').value = json;
-  });
-  document.getElementById('importBtn').addEventListener('click', ()=>{
-    document.getElementById('jsonArea').focus();
-    document.getElementById('jsonArea').select();
-  });
-  document.getElementById('applyImport').addEventListener('click', ()=>{
-    const status = document.getElementById('importStatus');
-    try{
-      const data = JSON.parse(document.getElementById('jsonArea').value);
-      if(data.known){ known = new Set(data.known); localStorage.setItem('known', JSON.stringify(Array.from(known))); }
-      if(data.seeds && Array.isArray(data.seeds)){
-        const merged = [...SEEDS];
-        for(const c of data.seeds){
-          if(!merged.some(m=>m.topic===c.topic && m.q===c.q)) merged.push(c);
-        }
-        MASTER = ensureMinPerTopic(merged, MIN_PER_TOPIC);
-      }
-      rebuildDeck();
-      status.textContent = 'Imported ✔️';
-      status.className = 'ok tiny';
-    }catch(err){
-      status.textContent = 'Import failed';
-      status.className = 'danger tiny';
-    }
-    setTimeout(()=>{ status.textContent=''; }, 2500);
-  });
+els.card.addEventListener("click", flip);
+els.card.addEventListener("keydown", e=>{
+  if(e.key===" "||e.key==="Enter"){ e.preventDefault(); flip(); }
+  if(e.key==="ArrowLeft"){ e.preventDefault(); prev(); }
+  if(e.key==="ArrowRight"){ e.preventDefault(); next(); }
+  if(e.key.toLowerCase()==="s"){ const id = VIEW[idx].__id; known.has(id)?known.delete(id):known.add(id); saveKnown(); render(); }
 });
+els.shuffleBtn.onclick = ()=>{ VIEW = shuffle(VIEW, mulberry32(Date.now()&0xffff)); idx=0; render(); };
+els.resetBtn.onclick = resetProgress;
+els.topicFilter.onchange = ()=>{ applyFilters(); highlightChips(); };
+els.search.oninput = applyFilters;
+els.shuffleToggle.onchange = applyFilters;
+
+function init(){ renderTopics(); highlightChips(); applyFilters(); els.card.focus(); }
+init();
 </script>
 </body>
 </html>
